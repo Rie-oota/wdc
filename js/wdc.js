@@ -11,19 +11,36 @@ $(function() {
 const links = document.querySelectorAll('.my-link');
   links.forEach((link) => {
     link.addEventListener('click', function(event) {
-      event.preventDefault();
       const targetClass = event.target.getAttribute('data-target');
       const targetSection = document.querySelector(`.${targetClass}`);
       targetSection.scrollIntoView({behavior: 'smooth'});
     });
   });
 
+// トップ遷移ボタンの表示と非表示 スクロール時
 $(function(){
   $(window).scroll(function (){
     $("#bottom-area").each(function(){
-      var imgPos = $(this).offset().top;
-      var scroll = $(window).scrollTop();
-      var windowHeight = $(window).height();
+      const imgPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowHeight = $(window).height();
+      if (scroll > imgPos - windowHeight + windowHeight/5){
+        $(".top-button").fadeIn(400).addClass("show");
+      } else {
+        $(".top-button").fadeOut(400).removeClass("show");
+      }
+    });
+  });
+});
+
+// トップ遷移ボタンの表示と非表示 リロード時
+
+$(function(){
+  $(window).ready(function (){
+    $("#bottom-area").each(function(){
+      const imgPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowHeight = $(window).height();
       if (scroll > imgPos - windowHeight + windowHeight/5){
         $(".top-button").fadeIn(400).addClass("show");
       } else {

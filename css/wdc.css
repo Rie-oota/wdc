@@ -481,5 +481,5 @@ footer p {
 }
 
 .top-button:hover {
-  background: #D136D1;
+  transform: scale(1.1);
 }
